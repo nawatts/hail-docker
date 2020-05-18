@@ -20,6 +20,7 @@ ENV PYTHONSTARTUP=/etc/python-startup.py
 USER hail
 WORKDIR /home/hail/workspace
 
-RUN python3 -m pip install hail
+ARG HAIL_VERSION
+RUN python3 -m pip install hail${HAIL_VERSION:+\=\=$HAIL_VERSION}
 
 CMD ["python3"]
