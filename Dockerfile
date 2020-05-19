@@ -17,10 +17,12 @@ RUN apt-get -qq update && \
 COPY python-startup.py /etc/python-startup.py
 ENV PYTHONSTARTUP=/etc/python-startup.py
 
+ENV PATH="/home/hail/.local/bin:${PATH}"
+
 USER hail
 WORKDIR /home/hail/workspace
 
 ARG HAIL_VERSION
-RUN python3 -m pip install hail${HAIL_VERSION:+\=\=$HAIL_VERSION}
+RUN python3 -m pip install ipython hail${HAIL_VERSION:+\=\=$HAIL_VERSION}
 
-CMD ["python3"]
+CMD ["ipython3"]
